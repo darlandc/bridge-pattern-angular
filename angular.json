@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "bridge-pattern-angular"
+    }
+  },
+  "defaultProject": "bridge-pattern-angular",
+  "cli": {
+    "analytics": false
+  }
 }
