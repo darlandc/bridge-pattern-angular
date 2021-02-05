@@ -1,8 +1,9 @@
+import { MaterialModule } from './../material.module';
 import { WrapperComponent } from './wrapper/wrapper.component';
 import { LoginComponent } from './widgets/login/login.component';
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductMenuComponent } from './widgets/product-menu/product-menu.component';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -10,14 +11,13 @@ import { ProductMenuComponent } from './widgets/product-menu/product-menu.compon
     LoginComponent,
     ProductMenuComponent
   ],
-  imports: [ CommonModule ],
+  imports: [ CommonModule, MaterialModule ],
   exports: [
     WrapperComponent,
     LoginComponent,
     ProductMenuComponent
   ],
-  providers: [
-
-  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [],
 })
 export class CoreModule {}

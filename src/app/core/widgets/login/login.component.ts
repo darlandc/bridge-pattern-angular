@@ -1,25 +1,28 @@
+import { WIDGET } from './../../tokens/widget.token';
 import { Widget } from './../../interfaces/widget.interface';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  providers: [
+    {
+      provide: WIDGET,
+      useExisting: LoginComponent
+    }
+  ]
 })
 export class LoginComponent implements Widget {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
-
   load(){
-    debugger
+    console.log(`loading login`)
   }
 
   refresh(){
-    debugger
+    console.log(`refreshing login`)
   }
 
 }
