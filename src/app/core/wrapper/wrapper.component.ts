@@ -13,8 +13,6 @@ export class WrapperComponent implements OnInit {
   @ContentChild(WIDGET as any, { static: true })
   widget: Widget;
   isRefreshing: boolean;
-  state: Object;
-  initialState: Object;
 
   constructor() {}
 
