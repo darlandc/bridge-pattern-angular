@@ -1,2 +1,4 @@
 <p>characters here: </p>
-{{ res.image }}
+<img src="{{ res.image }}">
+<p>{{ res.name }}</p>
+<p [hidden]="err" class="error">{{ err }} </p>

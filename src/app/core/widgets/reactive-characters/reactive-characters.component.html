@@ -1,0 +1,15 @@
+<p>reactive-characters works!</p>
+
+<h2>Select reactive character</h2>
+
+<select [formControl]="form">
+  <option *ngFor="let characterId of list" [value]="characterId">
+    Name: ({{ characterId }})
+  </option>
+</select>
+
+<pre *ngIf="(character$ | async) as character">
+  {{ character | json}}
+</pre>
+
+asdadadasda

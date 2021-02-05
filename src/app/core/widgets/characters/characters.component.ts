@@ -1,7 +1,10 @@
 import { CharacteresService } from './../../services/characteres.service';
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { WIDGET } from './../../tokens/widget.token';
 import { Widget } from './../../interfaces/widget.interface';
+import { HttpErrorResponse } from '@angular/common/http';
+import { FormControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-characters',
@@ -15,50 +18,29 @@ import { Widget } from './../../interfaces/widget.interface';
   ]
 })
 export class CharactersComponent implements Widget {
-
   res: any;
+  err: HttpErrorResponse;
+  id: number;
 
-  constructor(private service: CharacteresService) {
-    this.service.getCharacters().subscribe(
+  constructor(private service: CharacteresService) {}
+
+  load() {
+    this.getList();
+  }
+  refresh() {
+    this.getList();
+  }
+
+  getList() {
+    this.id = Math.floor(Math.random() * 244);
+    this.service.getCharacters(`${this.id}`).subscribe(
       res => {
         this.res = res;
-
-
       },
       err => {
-        console.log(`------------ ${err}`);
-      },
-      ()=> {
-        debugger
+        this.err = err;
       }
     );
   }
-  load() {
-  }
 
-  refresh() {
-    console.log(`--- CharactersComponent`);
-  }
-}
-
-
-export interface ICharacter {
-created: string;
-episode: Array<[]>;
-gender: string;
-id: number;
-image: string;
-location: {
-  name: string,
-  url: string
-};
-name: string;
-origin: {
-  name: string,
-  url: string
-};
-species: string;
-status: string;
-type: string;
-url: string;
 }

@@ -5,15 +5,18 @@ import { CommonModule } from '@angular/common';
 import { ProductMenuComponent } from './widgets/product-menu/product-menu.component';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CharactersComponent } from './widgets/characters/characters.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ReactiveCharactersComponent } from './widgets/reactive-characters/reactive-characters.component';
 
 @NgModule({
   declarations: [
     WrapperComponent,
     LoginComponent,
     ProductMenuComponent,
-    CharactersComponent
+    CharactersComponent,
+    ReactiveCharactersComponent
   ],
-  imports: [ CommonModule, MaterialModule ],
+  imports: [CommonModule, MaterialModule, ReactiveFormsModule, FormsModule],
   exports: [
     WrapperComponent,
     LoginComponent,
@@ -21,6 +24,6 @@ import { CharactersComponent } from './widgets/characters/characters.component';
     CharactersComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [],
+  providers: []
 })
 export class CoreModule {}
