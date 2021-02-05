@@ -1,6 +1,6 @@
 import { WIDGET } from './../../tokens/widget.token';
 import { Widget } from './../../interfaces/widget.interface';
-import { Component } from '@angular/core';
+import { Component, } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +14,6 @@ import { Component } from '@angular/core';
   ]
 })
 export class LoginComponent implements Widget {
-
-  constructor() { }
 
   load(){
     console.log(`loading login`)
