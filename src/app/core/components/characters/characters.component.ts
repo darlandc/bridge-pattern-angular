@@ -21,6 +21,10 @@ export class CharactersComponent implements Widget {
   res: any;
   err: HttpErrorResponse;
   id: number;
+  image: any;
+  name: any;
+  loading: any;
+  loaded: any;
 
   constructor(private service: CharacteresService) {}
 
@@ -32,13 +36,19 @@ export class CharactersComponent implements Widget {
   }
 
   getList() {
+    this.loading = true;
     this.id = Math.floor(Math.random() * 244);
     this.service.getCharacters(`${this.id}`).subscribe(
       res => {
         this.res = res;
+        this.image = res.image;
+        this.name = res.name;
       },
       err => {
         this.err = err;
+      },
+      ()=> {
+        this.loading = false;
       }
     );
   }

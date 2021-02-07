@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
     }
   ]
 })
-export class ReactiveCharactersComponent implements Widget {
+export class ReactiveCharactersComponent implements Widget, OnDestroy {
 
   list = Array.from({ length: 10 }, (_, i) => i + 1);
   form = new FormControl();
@@ -25,7 +25,6 @@ export class ReactiveCharactersComponent implements Widget {
   private subSink = new Subscription();
 
   constructor(private service: CharacteresService) {
-    console.log(12123123)
   }
   load() {
     this.sinc();
@@ -41,9 +40,9 @@ export class ReactiveCharactersComponent implements Widget {
     );
   }
 
-  // ngOnDestroy() {
-  //   this.subSink.unsubscribe();
-  // }
+  ngOnDestroy() {
+    this.subSink.unsubscribe();
+  }
 
   private loadCharacter(id: string) {
     this.service.loadCharacter(id);

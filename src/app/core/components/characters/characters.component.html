@@ -1,0 +1,8 @@
+<mat-spinner class="loading" *ngIf="loading; else loaded"></mat-spinner>
+<ng-template #loaded>
+<p>characters here: </p>
+<p *ngIf="res">
+  <h2>{{ res.name }}</h2>
+  <img src="{{ res.image }}">
+  <p [hidden]="err" class="error">{{ err }} </p>
+</ng-template>

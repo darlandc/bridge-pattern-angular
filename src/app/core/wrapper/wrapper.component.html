@@ -1,6 +1,6 @@
 <div class="wrapper-content">
 <mat-card>
-  <mat-spinner class="loading" color="darkolivegreen" *ngIf="isRefreshing; else widgetLoaded">
+  <mat-spinner class="loading" *ngIf="loading; else widgetLoaded">
   </mat-spinner>
   <ng-template #widgetLoaded class="widgets">
     <ng-content>
