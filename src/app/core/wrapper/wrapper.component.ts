@@ -1,6 +1,5 @@
 import { WIDGET } from './../tokens/widget.token';
-import { Component, OnInit, ContentChild, TemplateRef } from '@angular/core';
-import { LoginComponent } from '../widgets/login/login.component';
+import { Component, OnInit, ContentChild } from '@angular/core';
 import { Widget } from '../interfaces/widget.interface';
 
 @Component({
@@ -12,7 +11,7 @@ export class WrapperComponent implements OnInit {
 
   @ContentChild(WIDGET as any, { static: true })
   widget: Widget;
-  isRefreshing: boolean;
+  loading: boolean;
 
   constructor() {}
 
@@ -24,9 +23,5 @@ export class WrapperComponent implements OnInit {
 
   refresh(){
    this.widget.refresh();
-   this.isRefreshing = true;
-   setTimeout(() => {
-     this.isRefreshing = false;
-   }, 300);
   }
 }
