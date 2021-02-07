@@ -4,11 +4,12 @@
   </mat-spinner>
   <ng-template #widgetLoaded class="widgets">
     <ng-content>
+
     </ng-content>
+    <button mat-stroker-button (click)="refresh()">refresh</button>
   </ng-template>
 </mat-card>
   <mat-divider></mat-divider>
   <section>
-    <button mat-stroker-button (click)="refresh()">refresh</button>
   </section>
 </div>

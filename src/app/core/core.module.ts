@@ -22,7 +22,8 @@ import { ReactiveCharactersComponent } from './components/reactive-characters/re
     WrapperComponent,
     LoginComponent,
     ProductMenuComponent,
-    CharactersComponent
+    CharactersComponent,
+    ReactiveCharactersComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: []
