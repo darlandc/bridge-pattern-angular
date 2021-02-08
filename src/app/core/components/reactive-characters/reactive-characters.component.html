@@ -2,11 +2,11 @@
 
 <select [formControl]="form">
   <option *ngFor="let characterId of list" [value]="characterId">
-    Name: ({{ characterId }})
+    Id: ({{ characterId }})
   </option>
 </select>
 
 <pre *ngIf="(character$ | async) as character">
-  {{ character | json}}
+  {{ character | json }}
 </pre>
 
