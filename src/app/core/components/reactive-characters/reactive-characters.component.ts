@@ -1,9 +1,10 @@
 import { WIDGET } from './../../tokens/widget.token';
 import { Widget } from './../../interfaces/widget.interface';
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, AfterViewChecked } from '@angular/core';
 import { CharacteresService } from '../../services/characteres.service';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { ChangeDetectorRef,AfterContentChecked} from '@angular/core'
 
 @Component({
   selector: 'app-reactive-characters',
@@ -16,14 +17,16 @@ import { Subscription } from 'rxjs';
     }
   ]
 })
-export class ReactiveCharactersComponent implements Widget, OnDestroy {
+export class ReactiveCharactersComponent implements Widget, OnDestroy, AfterContentChecked {
   list = Array.from({ length: 40 }, (_, i) => i + 1);
   form = new FormControl();
   readonly character$ = this.service.character$;
 
   private subSink = new Subscription();
+  loading: boolean;
 
-  constructor(private service: CharacteresService) {}
+  constructor(private service: CharacteresService, private changeDetector: ChangeDetectorRef) {
+  }
 
   load() {
     this.sinc();
@@ -45,5 +48,9 @@ export class ReactiveCharactersComponent implements Widget, OnDestroy {
 
   private loadCharacter(id: string) {
     this.service.loadCharacter(id);
+  }
+
+  ngAfterContentChecked(): void {
+    this.changeDetector.detectChanges();
   }
 }

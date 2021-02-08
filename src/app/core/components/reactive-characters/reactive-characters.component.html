@@ -6,7 +6,11 @@
   </option>
 </select>
 
-<pre *ngIf="(character$ | async) as character">
-  {{ character | json }}
-</pre>
+<mat-spinner class="loading" *ngIf="loading; else loaded"></mat-spinner>
+<ng-template #loaded>
 
+    <pre *ngIf="(character$ | async) as character">
+        {{ character | json }}
+      </pre>
+
+</ng-template>

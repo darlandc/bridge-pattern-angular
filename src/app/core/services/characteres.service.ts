@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders
+} from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { switchMap, filter, shareReplay } from 'rxjs/operators';
+import { switchMap, filter, shareReplay, finalize, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CharacteresService {
-
   private url = `https://rickandmortyapi.com/api/character/`;
   private selectedCharacterId = new BehaviorSubject<string>(null);
   public loading = new BehaviorSubject<boolean>(false);
@@ -20,14 +23,13 @@ export class CharacteresService {
     shareReplay(1)
   );
 
-  getCharacters(id: string): Observable<any>  {
+  getCharacters(id: string): Observable<any> {
     return this.http.get<any>(`${this.url}/${id}`);
   }
 
   loadCharacter(id: string) {
     this.selectedCharacterId.next(id);
   }
-
 }
 
 // export interface ICharacter {

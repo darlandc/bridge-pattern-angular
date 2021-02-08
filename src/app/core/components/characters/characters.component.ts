@@ -1,3 +1,4 @@
+import { finalize, tap } from 'rxjs/operators';
 import { CharacteresService } from './../../services/characteres.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { WIDGET } from './../../tokens/widget.token';
@@ -23,7 +24,7 @@ export class CharactersComponent implements Widget {
   id: number;
   image: any;
   name: any;
-  loading: any;
+  loading: boolean;
   loaded: any;
 
   constructor(private service: CharacteresService) {}
@@ -38,19 +39,18 @@ export class CharactersComponent implements Widget {
   getList() {
     this.loading = true;
     this.id = Math.floor(Math.random() * 244);
-    this.service.getCharacters(`${this.id}`).subscribe(
-      res => {
-        this.res = res;
-        this.image = res.image;
-        this.name = res.name;
-      },
-      err => {
-        this.err = err;
-      },
-      ()=> {
-        this.loading = false;
-      }
-    );
+    this.service
+      .getCharacters(`${this.id}`)
+      .pipe(finalize(() => (this.loading = false)))
+      .subscribe(
+        res => {
+          this.res = res;
+          this.image = res.image;
+          this.name = res.name;
+        },
+        err => {
+          this.err = err;
+        }
+      );
   }
-
 }
